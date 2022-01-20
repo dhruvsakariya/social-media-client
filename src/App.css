@@ -1,15 +1,11 @@
-.nav-items {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.page-title {
+  display: block !important;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 10px;
 }
-.nav-item {
-  list-style-type: none;
-  padding: 10px;
-}
-.link {
-  text-decoration: none;
-}
-.link:active {
-  color: black;
+
+.form-container {
+  width: 400px;
+  margin: auto;
 }
