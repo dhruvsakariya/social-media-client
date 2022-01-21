@@ -1,8 +1,9 @@
 import { gql, useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { Button, Form } from "semantic-ui-react";
+import { useHistory } from "react-router-dom";
 
-const Register = (props) => {
+const Register = () => {
   const [errors, setErrors] = useState({});
   const [values, setValues] = useState({
     username: "",
@@ -10,6 +11,7 @@ const Register = (props) => {
     email: "",
     confirmPassword: "",
   });
+  const history = useHistory();
 
   function onChange(e) {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -17,7 +19,7 @@ const Register = (props) => {
   const [addUser, { loading, data, error }] = useMutation(REGISTER_USER, {
     update(_, result) {
       console.log(result);
-      props.history.push("/");
+      history.push("/");
     },
     onError(err) {
       setErrors(
