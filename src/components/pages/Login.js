@@ -1,9 +1,11 @@
 import { gql, useMutation } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../../context/auth";
 
 const Login = () => {
+  const authContext = useContext(AuthContext);
   const [errors, setErrors] = useState({});
   const [values, setValues] = useState({
     username: "",
@@ -16,9 +18,10 @@ const Login = () => {
   function onChange(e) {
     setValues({ ...values, [e.target.name]: e.target.value });
   }
-  const [loginUser, { loading, data, error }] = useMutation(LOGIN_USER, {
-    update(_, result) {
-      console.log(result);
+  const [loginUser, { loading }] = useMutation(LOGIN_USER, {
+    update(_, { data: { login: userData } }) {
+      console.log(userData);
+      authContext.login(userData);
       history.push("/");
     },
     onError(err) {
