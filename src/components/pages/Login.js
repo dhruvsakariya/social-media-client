@@ -20,7 +20,7 @@ const Login = () => {
   }
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
-      console.log(userData);
+      // console.log(userData);
       authContext.login(userData);
       history.push("/");
     },
