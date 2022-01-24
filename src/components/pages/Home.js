@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useQuery, gql } from "@apollo/client";
-import { Grid, Transition } from "semantic-ui-react";
+import { Grid, Loader, Transition } from "semantic-ui-react";
 import PostForm from "../../components/PostForm";
 import PostCard from "../../components/PostCard";
 import { AuthContext } from "../../context/auth";
@@ -11,6 +11,7 @@ const Home = () => {
   return (
     <div>
       <div>{error ? <h1>Error </h1> : ""}</div>
+      {loading ? <Loader active /> : ""}
       <Grid columns={3}>
         <Grid.Row className="page-title">
           <h1>Recent Posts</h1>
