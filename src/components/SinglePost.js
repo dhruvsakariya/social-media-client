@@ -6,14 +6,21 @@ import moment from "moment";
 import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
 import { AuthContext } from "../context/auth";
+import { useHistory } from "react-router-dom";
 
 const SinglePost = (props) => {
   const { user } = useContext(AuthContext);
+  const history = useHistory();
   const postId = props.match.params.postId;
   // console.log(postId);
   const { data } = useQuery(FETCH_POST_QUERY, {
     variables: { postId },
   });
+
+  function deletePostCallBack() {
+    history.push("/");
+  }
+
   let postMarkup;
   if (!data) {
     postMarkup = <Loader active />;
@@ -67,7 +74,7 @@ const SinglePost = (props) => {
                   </Label>
                 </Button>
                 {user && user.username === username && (
-                  <DeleteButton postId={id} />
+                  <DeleteButton postId={id} callback={deletePostCallBack} />
                 )}
               </Card.Content>
             </Card>
