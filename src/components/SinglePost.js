@@ -8,8 +8,9 @@ import {
   Icon,
   Image,
   Label,
+  Loader,
+  
 } from "semantic-ui-react";
-import { Loader } from "semantic-ui-react";
 import moment from "moment";
 import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
